@@ -1,42 +1,37 @@
 import java.util.Scanner;
+class VendingMachine {
+   VendingMachine() {
+   }
+   public static void main(String[] var0) {
+      byte var1 = 15;
+      int var2 = 0;
+      Scanner var3 = new Scanner(System.in);
 
-public class VendingMachine {
+      while(var2 < var1) {
+         System.out.println("Enter the coin :");
+         String var4 = var3.nextLine().trim().toUpperCase();
+         Coin var5 = VendingMachine.Coin.valueOf(var4);
+         byte var6 = 0;
+         switch (var5.ordinal()) {
+            case 0 -> var6 = 1;
+            case 1 -> var6 = 2;
+            case 2 -> var6 = 5;
+            case 3 -> var6 = 10;
+            default -> System.out.println("Invalid input.");
+         }
+         var2 += var6;
+         System.out.println("Total so far : " + var2);
+      }
 
-    enum Coin {
-        ONE, TWO, FIVE, TEN
-    }
-
-    public static void main(String[] args) {
-        int price = 15;
-        int total = 0;
-        Scanner sc = new Scanner(System.in);
-
-        while (total < price) {
-            System.out.print("Insert coin (ONE/TWO/FIVE/TEN): ");
-            String input = sc.next().trim().toUpperCase();
-
-            Coin coin;
-
-            try {
-                coin = Coin.valueOf(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println("Invalid coin. Try again.");
-                continue;
-            }
-
-            int value = switch (coin) {
-                case ONE -> 1;
-                case TWO -> 2;
-                case FIVE -> 5;
-                case TEN -> 10;
-            };
-
-            total += value;
-            System.out.println("Total so far: " + total);
-        }
-
-        System.out.println("Paid. Change: " + (total - price));
-
-        sc.close();
-    }
+      System.out.println("Paid. Change : " + (var2 - var1));
+      var3.close();
+   }
+   static enum Coin {
+      ONE,
+      TWO,
+      FIVE,
+      TEN;
+      private Coin() {
+      }
+   }
 }
