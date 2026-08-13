@@ -48,7 +48,7 @@ class triangle extends shape {
     }
 }
 
-public class Driver {
+public class ShapeTest {
 
     public static void main(String[] args) {
 
